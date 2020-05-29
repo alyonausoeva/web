@@ -5,7 +5,7 @@ jQuery(function($){
         <div class='container'>
 
             <div class='page-header'>
-                <h1 id='page-title'>Все товары</h1>
+                <h1 id='page-title'>Все записи</h1>
             </div>
 
             <!-- здесь будет показано содержимое -->
