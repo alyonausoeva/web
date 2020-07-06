@@ -17,7 +17,7 @@
     <div class="menu white">
         <div class="menu_logo">
             <div class="menu_item">
-                <a href="main2.php"> Информрегистр </a>
+                <a href="main3.php"> Информрегистр </a>
             </div>
         </div>
 
@@ -37,7 +37,12 @@
             <div class="menu_item light_blue">
                 <a href="certificate.html">свидетельства</a>
             </div>
-            
+            <div class="menu_item light_blue">
+                <a href="department.html">отделы</a>
+            </div>
+            <div class="menu_item light_blue">
+                <a href="officer.html">сотрудники</a>
+            </div>
         </div>
 
         <div class="menu_profile">
@@ -77,6 +82,50 @@
 
 
     </div>
+
+    <div class="dashboard white">
+        <div class="dashboard__title title">
+            <div>
+            Статистика
+            </div>
+
+            <div class="greycolor button t">
+                <a href="print.php" >Печать</a>
+            </div>
+
+        </div>
+
+
+
+
+            <?php
+            //$data = json_decode(include(__DIR__ . "/api/log/read.php"), true);
+            $data = include __DIR__ . "/api/log/read.php";
+            $data = $data['records'];
+            ?>
+
+            <div class="statistic" >
+                <?php if (is_array($data)) : ?>
+                    <?php  foreach ($data as $item) : ?>
+                <div class="stat_in">
+                <div class="stat_one">
+                            <div class="blue_border " ><?= $item['data'] ?></div>
+                            <div class="blue_border "><?= $item['date'] ?></div>
+                            <div class="blue_border "><?= $item['type'] ?></div>
+                            <div class="blue_border "><?= $item['status'] ?></div>
+                </div>
+
+                    <div class="blue_border "><?= $item['body'] ?></div>
+                </div>
+
+
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p><?= $data ?></p>
+                <?php endif; ?>
+            </div>
+
+        </div>
 
 
 

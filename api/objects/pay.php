@@ -161,6 +161,25 @@ pay_id=:pay_id,
 
         return $stmt;
     }
+    function filtr($keywords){
+               $query = "SELECT
+                *
+            FROM
+                `{$this->table_name}` 
+            WHERE
+                `pay_sum` < '{$keywords}' ";
+        // подготовка запроса
+        $stmt = $this->conn->prepare($query);
+        // очистка
+        $keywords=htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{$keywords}%";
+        // привязка
+        $stmt->bindParam(1, $keywords);
+        // выполняем запрос
+        $stmt->execute();
+
+        return $stmt;
+    }
 
     // чтение товаров с пагинацией
     public function readPaging($from_record_num, $records_per_page){
@@ -195,5 +214,7 @@ pay_id=:pay_id,
 
         return $row['total_rows'];
     }
+
+
 }
 ?>

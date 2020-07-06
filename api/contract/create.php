@@ -33,12 +33,36 @@ if (
     if($contract->create()){        
         http_response_code(201);        
         echo json_encode(array("message" => "Запись была создана."), JSON_UNESCAPED_UNICODE);
+        $result = [
+            'data' => 'Запись была создана',
+            'date'=>date('Y-m-d H:i:s'),
+            'type'=>$_SERVER["REQUEST_METHOD"],
+            'status'=>http_response_code(201),
+            'body'=> json_encode($data),
+            'source'=>$_SERVER['REMOTE_ADDR']
+        ];
     }   else {
         http_response_code(503);        
         echo json_encode(array("message" => "Невозможно создать запись."), JSON_UNESCAPED_UNICODE);
+        $result = [
+            'data' => 'Невозможно создать запись.',
+            'date'=>date('Y-m-d H:i:s'),
+            'type'=>$_SERVER["REQUEST_METHOD"],
+            'status'=>http_response_code(503),
+            'body'=> json_encode($data),
+            'source'=>$_SERVER['REMOTE_ADDR']
+        ];
 }}else {   
     http_response_code(400);    
     echo json_encode(array("message" => "Невозможно создать запись. Данные неполные."), JSON_UNESCAPED_UNICODE);
+    $result = [
+        'data' => 'Невозможно создать запись. Данные неполные.',
+        'date'=>date('Y-m-d H:i:s'),
+        'type'=>$_SERVER["REQUEST_METHOD"],
+        'status'=>http_response_code(400),
+        'body'=> json_encode($data),
+        'source'=>$_SERVER['REMOTE_ADDR']
+    ];
 	}
 	?>
  

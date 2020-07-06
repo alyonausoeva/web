@@ -3,7 +3,7 @@
 @light_blue: rgba(174, 195, 240, 0.6);
 @shadow_color: rgba(0, 0, 0, 0.3);
 @grey: #71706e;
-@light_grey:  rgba(121, 120, 116, 0.6);
+@light_grey:  rgba(174, 195, 240, 0.2);
 
 .m-r-10px{ margin-right:10px; }
 .m-b-10px{ margin-bottom:10px; }
@@ -45,6 +45,7 @@ html {
     font-family: 'Manrope', sans-serif;
     font-size: 17px;
     color: @main_text_color;
+    background-color: @light_grey;
 }
 
 body {
@@ -57,8 +58,6 @@ a {
     color: #394555;
 }
 .binput{
-
-   
     height: 50px;
     border-radius: 30px;
     border: 0px solid white;
@@ -67,6 +66,10 @@ a {
     color: @main_text_color;
     
 }
+.msg{
+text-align: center;
+}
+
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
     z-index: 3;
     color: #fff;
@@ -109,16 +112,43 @@ box-shadow: 1px 4px 4px @shadow_color;
     margin: 5px;
     box-shadow: 1px 4px 4px @shadow_color;
 }
+.button{
+  display: flex;
+   width: 100px;
+    height: 50px;
+	border-radius: 30px;
+    border: 0px solid white;
+    padding: 0px 10px;
+	color: white;
+	margin: 5px;
+    box-shadow: 1px 4px 4px @shadow_color;
+	font-size: 17px;
+	
+	
+}
+.hide{
+    display: none;
+    visibility: hidden;
+}
+.print_item{
+    margin: 10px;
+}
+.button a{
+margin: auto auto;
+color: white;
+}
 
 
 main {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
 }
-unsplashapi{
-    background-attachment: fixed;
-}
+
+
+
+
 .form {
     display: flex;
     flex-direction: column;
@@ -178,7 +208,48 @@ cursor: pointer;
     background-color: @grey;
     color: white;
 }
-/* main page*/
+.statistic {
+  margin:10px auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: auto;
+
+}
+.stat_in{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: @light_blue;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 40px;
+    border-radius: 1px solid @light_blue;
+
+}
+.stat_one{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
+
+}
+.blue_border{
+    border: 3px solid white;
+    padding: 10px;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 40px;
+    align-self: stretch;
+
+}
+
+.lightgreycolor{
+    background-color: @light_grey;
+    color: white;
+}
+
 
 header{
     display: flex;
@@ -211,9 +282,28 @@ header{
     display: flex;
     flex-direction: column;
     margin: 0px auto;
+    align-self: center;
+
 
 }
+.dashboard__mainpart{
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+    
+}
+.dashboard__picture{
+   width: 50%;
+}
+.dashboard__picture img{
+    width: 100%;
+}
 
+.dashboard__text{
+    width: 50%;
+    text-align: left;
+}
 .white{
     background: white;
     border-radius: 30px;
@@ -231,11 +321,26 @@ header{
     box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
 	border: 0px solid @light_blue;
 }
+.dashboard__title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-@media only screen and (max-device-width: 480px) {
+}
+.dashboard__title div{
+    margin-left: auto;
+
+}
+.t{
+
+}
+@media only screen and (max-device-width: 700px) {
 .w-50-pct{
 width:100%;
 }
+
+
 .menu div{
 margin-top:20px;
 }
@@ -246,7 +351,7 @@ body{
         width: 750px;
         height: 100px;
         border-radius: 50px;
-        font-size: 40px;
+
 
     }
     .title {
@@ -268,6 +373,47 @@ body{
         height: 100px;
         width: 200px;
     }
+    .dashboard__mainpart {
+
+        flex-direction: column;
+    }
+    .dashboard__picture{
+        width: 100%;
+    }
+    .dashboard__picture img{
+        width: 100%;
+    }
+
+    .dashboard__text{
+        width: 90%;
+        margin: 0px auto;
+    }
+
+    .dashboarb__picture img{
+
+        width:50%;
+    }
+
+    .statistic{
+
+
+    }
+    .stat_one{
+
+    }
+    .stat_in{
+
+    }
+    .blue_border{
+       width: 900px;
+
+        font-size: 40px;
+        overflow: visible;
+
+
+
+    }
+
 }
 
 

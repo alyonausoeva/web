@@ -5,12 +5,25 @@ function readProductsTemplate(data, keywords){
         <!-- форма поиска товаров -->
 		<div class='search'>
         <form id='search-product-form' action='#' method='post'>
-            <div class='input-group  pull-left w-50-pct shadow '>
+            <div class='input-group  pull-left w-50-pct m-r-10px shadow '>
                 <input type='text' value='` + keywords + `' name='keywords' class=' binput form-control product-search-keywords' placeholder='Поиск записей...' />
 
                 <span class='input-group-btn '>
                     <button type='submit' class='btn btn-primary blue binput ' type='button'>
                         Поиск
+                    </button>
+                </span>
+
+            </div>
+        </form>
+        
+        <form id='filtr-product-form' action='#' method='post'>
+            <div class='input-group  pull-left w-30-pct shadow '>
+                <input type='text' value='` + keywords + `' name='keywords' class=' binput form-control product-filtr-keywords' placeholder='Сумма оплаты до...' />
+
+                <span class='input-group-btn '>
+                    <button type='submit' class='btn btn-primary bluecolor binput ' type='button'>
+                        Применить
                     </button>
                 </span>
 
@@ -59,7 +72,7 @@ function readProductsTemplate(data, keywords){
                 </button>
 
                 <!-- кнопка для удаления товара -->
-                <button class='binput btn shadow btn-danger delete-product-button' data-pay_id='` + val.pay_id  + `'>
+                <button class='binput btn shadow btn-danger  delete-product-button' data-pay_id='` + val.pay_id  + `'>
                      Удалить
                 </button>
             </td>

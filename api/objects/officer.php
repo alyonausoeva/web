@@ -15,6 +15,26 @@ class Officer {
         $this->conn = $db;
 		
     }
+	function logg($officer_id, $officer_pas){
+
+    $query = "SELECT 
+	`officer_id`, `officer_name`, `department_id`, `officer_pas`, `officer_date`, `officer_level` FROM
+	".$this->table_name."
+WHERE
+`officer_id` LIKE '{$officer_id}' AND `officer_pas` LIKE '{$officer_pas}' AND `officer_level` BETWEEN 1 AND 3";
+
+    $stmt = $this->conn->prepare($query);    
+    $officer_id=htmlspecialchars(strip_tags($officer_id));
+    $officer_id = "%{$officer_id}%";
+    $officer_pas=htmlspecialchars(strip_tags($officer_pas));
+    $officer_pas = "%{$officer_pas}%";
+    $_SESSION['officer_id']= $officer_id;
+	$_SESSION['officer_level']= $officer_level;
+    $stmt->execute();
+	
+    return $stmt;
+	
+}
 
    function read(){
     $query = "SELECT * FROM
@@ -83,8 +103,7 @@ class Officer {
 		$this->department_id= $row['department_id'];
 		$this->officer_pas= $row['officer_pas'];
 		$this->officer_date= $row['officer_date'];
-		$this->officer_level= $row['officer_level'];	
-		
+		$this->officer_level= $row['officer_level'];		
         
     }
 
@@ -204,5 +223,7 @@ officer_id=:officer_id,
 
         return $row['total_rows'];
     }
+	
+	
 }
 ?>

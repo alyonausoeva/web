@@ -5,9 +5,9 @@ jQuery(function ($) {
         // загрузка списка категорий
         $.getJSON("http://web.std-237.ist.mospolytech.ru/api/klient/read.php", function (data) {
             // перебор возвращаемого списка данных и создание списка выбора
-            var categories_options_html = `<select fio='category_id' class='form-control'>`;
+            var categories_options_html = `<select name='category_id' class='form-control'>`;
             $.each(data.records, function (key, val) {
-                categories_options_html += `<option value='` + val.id + `'>` + val.fio + `</option>`;
+                categories_options_html += `<option value='` + val.id + `'>` + val.name + `</option>`;
             });
             categories_options_html += `</select>`;
             var create_product_html = `
@@ -23,36 +23,33 @@ jQuery(function ($) {
 
         <div class="form__label"> id клиента</div>
 		<div>
-           <input  fio='klient_id' class='form__input input form-control ' required />
+           <input  name='klient_id' class='form__input input form-control ' required />
         </div>
 
-        <div class="form__label"> ФИО</div>
+        <div class="form__label"> ФИО клиента</div>
 		<div>
-        <input fio='klient_fio' class='input form-control' required />
+        <input name='klient_fio' class='input form-control' required />
       </div>
 
-        <div class="form__label"> Паспортные данные</div>
+        <div class="form__label"> Паспортные данные </div>
 		<div>
-         <input fio='klient_tel' class='input form-control' required>
+         <input name='klient_pas' class='input form-control' required>
 		 </div>
         
 		
-		 <div class="form__label"> Телефон</div>
+		 <div class="form__label"> Номер телефона </div>
 		 <div>
-         <input fio='klient_tel' class='input form-control' required>
+         <input name='klient_tel' class='input form-control' required>
 		 </div>
         
 		
-		 <div class="form__label"> Адрес электонной почты</div>
+		 <div class="form__label"> Адрес электронной почты</div>
 		 <div>
-            <input fio='klient_email' class='input form-control' required>
+            <input name='klient_email' class='input form-control' required>
 			</div>
        
 		
-		 <div class="form__label"> Уровень доступа</div>
-		 <div>
-         <input fio='klient_level' class='input form-control' required>
-        </div>
+		 
 
         <!-- кнопка отправки формы -->
        <div class="form__submit ">
@@ -68,7 +65,7 @@ jQuery(function ($) {
             changePageTitle("Создание записи");
 
         });
-        
+
     });
 
     // будет работать, если создана форма товара

@@ -13,11 +13,11 @@
 <body>
 
 
-<header>
-    <div class="menu white">
+<header class="hide">
+    <div class="">
         <div class="menu_logo">
             <div class="menu_item">
-                <a href="main2.php"> Информрегистр </a>
+                <a href="main3.php"> Информрегистр </a>
             </div>
         </div>
 
@@ -37,7 +37,12 @@
             <div class="menu_item light_blue">
                 <a href="certificate.html">свидетельства</a>
             </div>
-            
+            <div class="menu_item light_blue">
+                <a href="department.html">отделы</a>
+            </div>
+            <div class="menu_item light_blue">
+                <a href="officer.html">сотрудники</a>
+            </div>
         </div>
 
         <div class="menu_profile">
@@ -49,19 +54,19 @@
 </header>
 
 <main>
-    <div class="dashboard white">
+    <div class=" hide">
 
-        <div class="dashboard__title title">
+        <div class=" hide">
             Регистр баз данных
         </div>
 
 
-        <div class="dashboard__mainpart">
+        <div class=" hide">
             <div class="dashboard__picture">
                 <img src="/app/assets/img/boy.jpg">
             </div>
 
-            <div class="dashboard__text">
+            <div class="dashboard__text hide">
                 <p><strong> ИС регистра баз данных </strong> предназначена для обеспечения
                     хранение и обработки информации о регистрируемых объектах. Эта организация
                     регистрирует базы банных общего доступа.</p>
@@ -75,6 +80,50 @@
         </div>
 
 
+
+    </div>
+
+    <div class="">
+        <div class=" hide">
+            <div>
+                Статистика
+            </div>
+
+            <div class="greycolor button t hide">
+                <a href="print.php" >Печать</a>
+            </div>
+
+        </div>
+
+
+
+
+        <?php
+        //$data = json_decode(include(__DIR__ . "/api/log/read.php"), true);
+        $data = include __DIR__ . "/api/log/read.php";
+        $data = $data['records'];
+        ?>
+
+        <div class="statistic" >
+            <?php if (is_array($data)) : ?>
+                <?php  foreach ($data as $item) : ?>
+                    <div class="stat_in">
+                        <div class="stat_one">
+                            <div class=" print_item" ><?= $item['data'] ?></div>
+                            <div class="print_item "><?= $item['date'] ?></div>
+                            <div class="print_item "><?= $item['type'] ?></div>
+                            <div class=" print_item"><?= $item['status'] ?></div>
+                        </div>
+
+                        <div class="print_item"><?= $item['body'] ?></div>
+                    </div>
+
+
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p><?= $data ?></p>
+            <?php endif; ?>
+        </div>
 
     </div>
 

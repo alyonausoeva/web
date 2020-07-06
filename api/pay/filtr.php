@@ -1,29 +1,29 @@
 <?php
 // необходимые HTTP-заголовки
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: officers/json; charset=UTF-8");
 
 // подключение необходимых файлов
 include_once '../config/core.php';
 include_once '../config/database.php';
-include_once '../objects/certificate.php';
+include_once '../objects/pay.php';
 $database = new Database();
 $db = $database->getConnection();
-$certificate = new Certificate($db);
+$pay = new Pay($db);
 
 // получаем ключевые слова
-$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+$keywords=isset($_GET["s"]) ? $_GET["s"] : '';
 
 // запрос товаров
-$stmt = $certificate->search($keywords);
+$stmt = $pay->filtr($keywords);
 $num = $stmt->rowCount();
 
 // проверяем, найдено ли больше 0 записей
 if ($num>0) {
 
     // массив товаров
-    $certificate_arr=array();
-    $certificate_arr["records"]=array();
+    $pay_arr=array();
+    $pay_arr["records"]=array();
 
     // получаем содержимое нашей таблицы
     // fetch() быстрее чем fetchAll()
@@ -31,23 +31,22 @@ if ($num>0) {
         // извлечём строку
         extract($row);
 
-                $certificate_item=array(
-         "certificate_id" => $certificate_id,
-		"certificate_date" => $certificate_date,
-		"contract_id" => $contract_id,
-         "pay_id" => $pay_id 
-		
-		 
+        $pay_item=array(
+            "pay_id" => $pay_id,
+            "pay_sum" => $pay_sum,
+            "pay_date" => $pay_date
+
+
         );
 
-        array_push($certificate_arr["records"], $certificate_item);
+        array_push($pay_arr["records"], $pay_item);
     }
 
     // код ответа - 200 OK
     http_response_code(200);
 
     // покажем товары
-    echo json_encode($certificate_arr);
+    echo json_encode($pay_arr);
 }
 
 else {
